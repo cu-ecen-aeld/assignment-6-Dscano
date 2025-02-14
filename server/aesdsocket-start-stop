@@ -1,0 +1,24 @@
+#! /bin/sh
+
+SERVER_NAME=$(echo $0 | cut -d '-' -f 1)
+
+case $1 in
+    start)
+        echo "Starting ${SERVER_NAME} server"
+		start-stop-daemon -S --oknodo -n aesdsocket -a /usr/bin/aesdsocket -- -d --verbose
+        ;;
+    stop)
+        echo "Stopping ${SERVER_NAME} server"
+		start-stop-daemon -K --oknodo -n aesdsocket --verbose
+        ;;
+    test)
+        echo "Testing ${SERVER_NAME} server"
+		start-stop-daemon --test -S --oknodo -n aesdsocket -a /usr/bin/aesdsocket
+		;;
+    *)
+        echo "No option was selected."
+        exit 1
+		;;
+esac
+
+exit 0
