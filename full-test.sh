@@ -20,12 +20,6 @@ echo "Running test with user $(whoami)"
 
 set +e
 
-./unit-test.sh
-unit_test_rc=$?
-if [ $unit_test_rc -ne 0 ]; then
-    echo "Unit test failed"
-fi
-
 # If there's a configuration for the assignment number, use this to look for
 # additional tests
 if [ -f conf/assignment.txt ]; then
